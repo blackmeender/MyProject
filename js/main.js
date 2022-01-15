@@ -5,20 +5,22 @@ const products = [
   { id: 4, title: 'Gamepad', price: 150, },
 ];
 
-const renderProduct = (title, price, img = 'https://picsum.photos/seed/1/200') => {
+const renderProduct = (good, img = 'https://picsum.photos/seed/1/200') => {
   return `<div class="product-item">
                 <img src="${img}" alt="">
-                <h3>${title}</h3>
-                <p>${price}</p>
+                <h3>${good.title}</h3>
+                <p>${good.price}</p>
                 <button class="by-btn">Добавить</button>
               </div>`;
 };
 
 const renderCatalog = (list) => {
-  const productList = list.map(good => renderProduct(good.title, good.price));
-  console.log(productList);
+  // const productList = list.map(good => renderProduct(good.title, good.price));
+  // console.log(productList);
 
-  document.querySelector('.products').innerHTML = productList;
+  // document.querySelector('.products').innerHTML = productList;
+
+  document.querySelector('.products').insertAdjacentHTML('afterbegin', list.map(good => renderProduct(good, good.img)).join(''));
 };
 
 renderCatalog(products);
